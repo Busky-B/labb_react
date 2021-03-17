@@ -58,13 +58,8 @@ class App extends Component {
   render() {
 
     return (
-      <div className="App">
-      <header className="App-header"> 
-
-      {/* <Navbar /> */}
-      
-      
-
+      <div className="">
+      <header className=""> 
         <h2>
           <ul>
             {this.state.myList.map(todo => 

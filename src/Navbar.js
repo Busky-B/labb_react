@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import  { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import ApiConn from './ApiConn';
 import Home from './home';
+import App from './App';
+import './App.css';
 
 
 function Navbar() {
@@ -9,15 +11,16 @@ function Navbar() {
         <div className="app app-header">
             <Router>
                 <div className="my-nav">
-                    <h2 class="my-item">my div</h2>
-                    <p class="my-item">Some text hihihiihihih</p>
+                    <h2 class="my-item">React-Labb</h2>
+                    <p class="my-item">Tobias Granbom </p>
                     <ul>
                         <li>
-                            {/* <a href="#">Home</a> */}
                             <Link to={'/'} className="nav-link">Home</Link>
                         </li>
                         <li>
-                            {/* <a href="#">SeaSharp-Activities</a> */}
+                            <Link to={'/App'} className="nav-link">Todo-App</Link>
+                        </li>
+                        <li>
                             <Link to={'/ApiConn'} className="nav-link">SeaSharp - Aktiviteter</Link>
                         </li>
                         <li>
@@ -26,14 +29,14 @@ function Navbar() {
                     </ul>
                 </div>
                 <Switch>
-                    <Route exact path='/' component={Home} />
-                    <Route path='/ApiConn' component={ApiConn} />
+                    <div>
+                        <Route exact path='/' component={Home} />
+                        <Route  path='/App' component={App} />
+                        <Route path='/ApiConn' component={ApiConn} />
+                    </div>
                 </Switch>  
             </Router>
-            <div>
-                      
-
-            </div>
+            
         </div>
        
        
