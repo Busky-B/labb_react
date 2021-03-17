@@ -14,6 +14,7 @@ function Navbar() {
                     <h2 class="my-item">React-Labb</h2>
                     <p class="my-item">Tobias Granbom </p>
                     <ul>
+                        
                         <li>
                             <Link to={'/'} className="nav-link">Home</Link>
                         </li>
