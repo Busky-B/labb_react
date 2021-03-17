@@ -1,5 +1,7 @@
 import React, {Component} from 'react' ;
-
+import  { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import ApiConn from './ApiConn';
+import Home from './home';
 import './App.css';
 
 class App extends Component {
@@ -35,6 +37,7 @@ class App extends Component {
       this.setState({
         // ... betyder att vi skapar en kopia av den gamla arrayen och lägger till det nya
         myList : [...this.state.myList,  this.state.myString]
+        
       });
       // Kolla om  det lagts till ny i state.myList
       if (this.state.myList.length > count) {
@@ -49,6 +52,7 @@ class App extends Component {
   }
   reprMyList() {
     // console.log(this.state.myList.map());
+    
   }
   // RENDER <----------------------------------------------
   render() {
@@ -56,6 +60,11 @@ class App extends Component {
     return (
       <div className="App">
       <header className="App-header"> 
+
+      {/* <Navbar /> */}
+      
+      
+
         <h2>
           <ul>
             {this.state.myList.map(todo => 

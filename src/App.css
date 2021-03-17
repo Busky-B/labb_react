@@ -1,3 +1,49 @@
+.my-nav {
+  background-color: white;
+  display: flex;
+  width: 100%;
+  height:70px;
+  color:#282c34;
+  align-items: center;
+  justify-content:center;
+  position: fixed;
+  top:0;
+  left:0;
+
+
+  border:3px solid cyan;
+  
+}
+.my-item {
+  margin:20px;
+}
+
+a {
+  text-decoration: none;
+  color:rgba(128, 0, 128, 0.761);
+}
+a:hover {
+  color:seagreen;
+  background-color: seagreen;
+  transition: 0.5s ease-in-out;
+}
+
+.my-nav li {
+  list-style-type: none;
+  display:inline-block;
+  margin: 10px 10px;
+  padding: 5px 10px;
+  border: 1px #000 solid;
+  border-radius: 15px;
+  
+}
+h2 {
+  color:black;
+}
+
+
+
+
 .App {
   text-align: center;
 }
