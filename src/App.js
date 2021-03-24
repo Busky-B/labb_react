@@ -26,6 +26,8 @@ class App extends Component {
     console.log('Form Submitted!');
     console.log('Event.target.value is: ' + event.target.vaule);
     console.log('state.myString: ' + this.state.myString);
+    
+
 
     if (this.state.myString !== null || this.state.myString.length !== 0) {
       // Sparar hur många som finns i state.mylist
@@ -44,6 +46,11 @@ class App extends Component {
         console.log('ToDo added to state.myList!');
         console.log(this.state.myList);
       }
+      
+      // Reset av inputform med id #todoInput
+      document.getElementById("todoInput").value = "";
+      
+      
     } else {
       console.log('Error! Could not add new todo to list ');
     }
@@ -58,23 +65,24 @@ class App extends Component {
   render() {
 
     return (
-      <div className="">
+      <div className="my-container">
       <header className=""> 
-        <h2>
-          <ul>
-            {this.state.myList.map(todo => 
-                {
-                return <li>{todo}</li> 
-                }
-              )}
-          </ul>
-        </h2>
+        <h1>My ToDoApp!</h1>
         <div>
           <form onSubmit={(event) => this.saveTodo(event)}>
-            <input onChange= {(event) => {this.handleNewTodo(event)}}type="text" />
-            <button type="submit" >Add ToDo</button>
+            <input id="todoInput" onChange= {(event) => {this.handleNewTodo(event)}} type="text" />
+            <button type="submit" >Add ToDoo</button>
           </form>
         </div>
+        <h2>
+          <ul>
+            {this.state.myList.map(todo =>
+                {
+                  return <li>{todo}</li>
+                }
+            )}
+          </ul>
+        </h2>
 
       </header>
       </div>

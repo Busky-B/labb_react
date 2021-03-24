@@ -11,8 +11,8 @@ function Navbar() {
         <div className="app app-header">
             <Router>
                 <div className="my-nav">
-                    <h2 class="my-item">React-Labb</h2>
-                    <p class="my-item">Tobias Granbom </p>
+                    <h2 className="my-item">React-Labb</h2>
+                    <p className="my-item">Tobias Granbom </p>
                     <ul>
                         
                         <li>
