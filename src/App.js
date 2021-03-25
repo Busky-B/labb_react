@@ -24,7 +24,7 @@ class App extends Component {
   saveTodo(event) {
     event.preventDefault();
     console.log('Form Submitted!');
-    console.log('Event.target.value is: ' + event.target.vaule);
+    console.log('Event.target.value is: ' + event.target.value);
     console.log('state.myString: ' + this.state.myString);
     
 
