@@ -28,7 +28,7 @@ class ApiConn extends Component {
 
     render(){
         return (
-            
+            <div className="my-container">
               <ul>
                   {/* <h4>Hämtat från http://localhost:64014/api/Activities</h4> */}
                   {/* {this.state.persons.map(person => <li>{person.description}</li>)} */}
@@ -36,6 +36,7 @@ class ApiConn extends Component {
                   <h4>Hämtat från random webapi</h4>
                   {this.state.persons.map(person => <li>{person.name}</li>)}
               </ul>              
+            </div>
         )
     }
 }

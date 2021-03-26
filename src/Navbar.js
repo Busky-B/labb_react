@@ -5,6 +5,10 @@ import Home from './home';
 import App from './App';
 import './App.css';
 
+const test = () =>  {
+    console.log("<-- TEST FUNCTION -->")
+    
+}
 
 function Navbar() {
     return(
@@ -14,9 +18,10 @@ function Navbar() {
                     <h2 class="my-item">React-Labb</h2>
                     <p class="my-item">Tobias Granbom </p>
                     <ul>
-                        
-                        <li>
-                            <Link to={'/'} className="nav-link">Home</Link>
+                        {/* executar test-function */}
+                        {test()}
+                        <li id="test">
+                            <Link to={'/'} className="nav-link" >Home</Link>
                         </li>
                         <li>
                             <Link to={'/App'} className="nav-link">Todo-App</Link>

@@ -22,6 +22,7 @@ class App extends Component {
     console.log(event.target.value);
   }
   saveTodo(event) {
+    // preventDefault gör så att en POST-form inte refreshar sidan.
     event.preventDefault();
     console.log('Form Submitted!');
     console.log('Event.target.value is: ' + event.target.vaule);
@@ -35,7 +36,7 @@ class App extends Component {
       // this.state.myList.push(this.state.myString)
       //använder setState istället för att göra det async
       this.setState({
-        // ... betyder att vi skapar en kopia av den gamla arrayen och lägger till det nya
+        // ... betyder att vi skapar en kopia av den gamla arrayen och lägger till det nya, har med immutable och göra tror jag
         myList : [...this.state.myList,  this.state.myString]
         
       });
@@ -58,8 +59,14 @@ class App extends Component {
   render() {
 
     return (
-      <div className="">
-      <header className=""> 
+      <div className="my-container">
+        <div>
+          {/* Event hämtar texten från input */}
+          <form onSubmit={(event) => this.saveTodo(event)}>
+            <input onChange= {(event) => {this.handleNewTodo(event)}}type="text" />
+            <button type="submit" >Add ToDo</button>
+          </form>
+        </div>
         <h2>
           <ul>
             {this.state.myList.map(todo => 
@@ -69,14 +76,7 @@ class App extends Component {
               )}
           </ul>
         </h2>
-        <div>
-          <form onSubmit={(event) => this.saveTodo(event)}>
-            <input onChange= {(event) => {this.handleNewTodo(event)}}type="text" />
-            <button type="submit" >Add ToDo</button>
-          </form>
-        </div>
 
-      </header>
       </div>
     );
   };
