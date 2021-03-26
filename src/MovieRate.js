@@ -1,21 +1,28 @@
 import React, {Component} from "react";
 import axios from "axios";
+//import apiConnectionString from 'apiConnectionString';
 
 class MovieRate extends Component {
+    constructor(props) {
+        super(props);
 
-    state = {
-        movies : [],
-        selectedMovie: {
-            id : 0,
-            title : "",
-            rating : 0
+        this.apiConnectionString = "https://localhost:44300/api/Movies/";
+        this.state = {
+            movies : [],
+            selectedMovie: {
+                id : 0,
+                title : "",
+                rating : 0
+                
+            },
+            editForm : false
             
-        },
-        editForm : false
-        
+        }
     }
+
+    
     componentDidMount() {
-        axios.get("https://localhost:5001/api/Movies").then(res => {
+        axios.get(this.apiConnectionString).then(res => {
             const movies = res.data ;
             console.log(movies);
            this.setState({movies}) 
@@ -27,7 +34,7 @@ class MovieRate extends Component {
         let title = prompt("Name of Movie?");
         let rating = prompt("Rate 1 to 10?");
         alert("<-- Created --> \n Movie: " + title + "\n Rating: " + rating);
-        axios.post("https://localhost:5001/api/Movies/", {
+        axios.post(this.apiConnectionString, {
             title,
             rating
         }).then(res => {
@@ -45,7 +52,7 @@ class MovieRate extends Component {
     clickedMovie(id) {
        // alert(id);
         console.log("Movie clicked with id " + id);
-        axios.get("https://localhost:5001/api/Movies/" + id).then(res => {
+        axios.get(this.apiConnectionString + id).then(res => {
             const selectedMovie = res.data ;
             console.log("Movie gotten: \n" + selectedMovie.title);
             this.setState({selectedMovie})
@@ -65,9 +72,11 @@ class MovieRate extends Component {
     }
     editMovieForm() {
         this.setState({editForm : !this.state.editForm});
+        this.setState({editTitle : this.state.selectedMovie.title})
         console.log("Editform is now: " + this.state.editForm)
-        
+        // document.getElementById("title").value = this.state.selectedMovie.title;
     }
+    
     editMovie(event) {
         event.preventDefault()
         //console.log(event.target[0].value);
@@ -77,7 +86,7 @@ class MovieRate extends Component {
             title : event.target.title.value,
             rating : event.target.rating.value
         }
-        axios.put("https://localhost:5001/api/Movies/" + this.state.selectedMovie.id, editedMovie).then(res => {
+        axios.put(this.apiConnectionString + this.state.selectedMovie.id, editedMovie).then(res => {
             console.log("PUT Success ");
             console.log(res.status);
         }).catch(res => {
@@ -87,7 +96,7 @@ class MovieRate extends Component {
     }
     
     deleteMovie(id) {
-        axios.delete("https://localhost:5001/api/Movies/" + id).then(res => {
+        axios.delete(this.apiConnectionString + id).then(res => {
             console.log("Success");
             console.log(res.data);
             
@@ -110,12 +119,15 @@ class MovieRate extends Component {
             behavior: "smooth"
         })
     }
+    updateEditValues(e) {
+        console.log(e.target.value);
+    }
 
     render() {
         return(
             <div className={""}>
                 <div className={"my-container"}>
-                    <h1>MovieRate</h1>
+                    <h1>MovieRate </h1>
                     <button onClick={() => {this.createMovie()}}>Add movie</button>
                     <h2>Selected Movie:</h2>
                     {/*Nedan används en logical && för att se om det finns en selectedMovie eller inte
@@ -135,10 +147,12 @@ class MovieRate extends Component {
                                     {this.state.editForm &&
                                     <form onSubmit={(event) => this.editMovie(event)}>
                                         <p>Titel:</p>
-                                        <input type={"text"} name={"title"} id={"title"}/>
+                                        <input type={"text"} id={"editTitle"} onChange={ (event) => {
+                                            this.updateEditValues(event);
+                                        }}/>
                                         <br />
                                         <p>Rating:</p>
-                                        <input type={"number"} name={"rating"}/>
+                                        <input type={"number"} value={this.state.editTitle}/>
                                         <br /> 
                                         
                                         <input type={"submit"} value={"OK"} />

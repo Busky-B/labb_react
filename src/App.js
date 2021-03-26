@@ -68,7 +68,6 @@ class App extends Component {
     return (
       <div className="my-container">
 
-      <header className="">
         <h1>My ToDoApp!</h1>
         <div>
           <form onSubmit={(event) => this.saveTodo(event)}>
@@ -85,8 +84,8 @@ class App extends Component {
             )}
           </ul>
         </h2>
-
       </div>
+      
     );
   };
 }
