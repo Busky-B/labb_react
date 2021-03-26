@@ -6,7 +6,7 @@ import './App.css';
 
 class App extends Component {
 
-  
+
   // STATE <-------------------------------------------------
   state = {
     myList : [],
@@ -25,12 +25,14 @@ class App extends Component {
     // preventDefault gör så att en POST-form inte refreshar sidan.
     event.preventDefault();
     console.log('Form Submitted!');
-    console.log('Event.target.value is: ' + event.target.vaule);
+    console.log('Event.target.value is: ' + event.target.value);
     console.log('state.myString: ' + this.state.myString);
+
+
 
     if (this.state.myString !== null || this.state.myString.length !== 0) {
       // Sparar hur många som finns i state.mylist
-      let count  = this.state.myList.length; 
+      let count  = this.state.myList.length;
 
       // Lägger till ny todo i state.mylist
       // this.state.myList.push(this.state.myString)
@@ -38,13 +40,18 @@ class App extends Component {
       this.setState({
         // ... betyder att vi skapar en kopia av den gamla arrayen och lägger till det nya, har med immutable och göra tror jag
         myList : [...this.state.myList,  this.state.myString]
-        
+
       });
       // Kolla om  det lagts till ny i state.myList
       if (this.state.myList.length > count) {
         console.log('ToDo added to state.myList!');
         console.log(this.state.myList);
       }
+
+      // Reset av inputform med id #todoInput
+      document.getElementById("todoInput").value = "";
+
+
     } else {
       console.log('Error! Could not add new todo to list ');
     }
@@ -53,27 +60,29 @@ class App extends Component {
   }
   reprMyList() {
     // console.log(this.state.myList.map());
-    
+
   }
   // RENDER <----------------------------------------------
   render() {
 
     return (
       <div className="my-container">
+
+      <header className="">
+        <h1>My ToDoApp!</h1>
         <div>
-          {/* Event hämtar texten från input */}
           <form onSubmit={(event) => this.saveTodo(event)}>
-            <input onChange= {(event) => {this.handleNewTodo(event)}}type="text" />
-            <button type="submit" >Add ToDo</button>
+            <input id="todoInput" onChange= {(event) => {this.handleNewTodo(event)}} type="text" />
+            <button type="submit" >Add ToDoo</button>
           </form>
         </div>
         <h2>
           <ul>
-            {this.state.myList.map(todo => 
+            {this.state.myList.map(todo =>
                 {
-                return <li>{todo}</li> 
+                  return <li>{todo}</li>
                 }
-              )}
+            )}
           </ul>
         </h2>
 

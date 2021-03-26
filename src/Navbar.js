@@ -3,6 +3,7 @@ import  { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import ApiConn from './ApiConn';
 import Home from './home';
 import App from './App';
+import MovieRate from "./MovieRate";
 import './App.css';
 
 const test = () =>  {
@@ -15,8 +16,8 @@ function Navbar() {
         <div className="app app-header">
             <Router>
                 <div className="my-nav">
-                    <h2 class="my-item">React-Labb</h2>
-                    <p class="my-item">Tobias Granbom </p>
+                    <h2 className="my-item">React-Labb</h2>
+                    <p className="my-item">Tobias Granbom </p>
                     <ul>
                         {/* executar test-function */}
                         {test()}
@@ -30,7 +31,7 @@ function Navbar() {
                             <Link to={'/ApiConn'} className="nav-link">SeaSharp - Aktiviteter</Link>
                         </li>
                         <li>
-                            <a href="#">Third Link(other api)</a>
+                            <Link to={'/MovieRate'} className="nav-link">MovieRate</Link>
                         </li>
                     </ul>
                 </div>
@@ -39,6 +40,7 @@ function Navbar() {
                         <Route exact path='/' component={Home} />
                         <Route  path='/App' component={App} />
                         <Route path='/ApiConn' component={ApiConn} />
+                        <Route path='/MovieRate' component={MovieRate}/>
                     </div>
                 </Switch>  
             </Router>

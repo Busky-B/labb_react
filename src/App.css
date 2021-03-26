@@ -1,11 +1,22 @@
 body {
   background-color: rgb(52, 53, 59);
+
+}
+.big {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.big-item {
+  position: relative;
+  right: 0;
 }
 .my-container {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
- 
+
   border: 1px solid black;
   border-radius: 15px;
 }
@@ -15,23 +26,63 @@ body {
   width: 100%;
   height:70px;
   color:#343841;
+  margin: 40px 20px;
+  flex-direction: column;
+}
+.movie-container {
+  background-color: rgba(30,52,58,0.85);
+  border: 1px solid black;
+  padding:15px;
+  margin:50px;
+  width: 25%;
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+}
+.selected-movie-container {
+  background-color:rgba(24,58,41,0.83);
+  border: 1px solid black;
+  padding:15px;
+  width: fit-content;
+}
+.movie-container:hover {
+  background-color: rgba(255,255,255,0.5);
+  transition: ease-in-out 1s;
+}
+.flex-row div {
+  /*flex-direction:row;*/
+  margin: 10px;
+
+}
+.flex-row li{
+  list-style: none;
+}
+.my-nav {
+  /*background-color: rgb(88, 88, 50); */
+  background-color: #282c34;
+  display: flex;
+  width: 100%;
+  height:70px;
   align-items: center;
   justify-content:center;
   /* position: fixed; */
   top:0;
   left:0;
-
-
   border:3px solid black;
-  
+  color: white;
 }
+.my-item h1, h2, h3, p {
+  color: white;
+}
+
 .my-item {
   margin:20px;
 }
 
 a {
   text-decoration: none;
-  color:rgba(128, 0, 128, 0.761);
+  color:lightgrey;
 }
 a:hover {
   color:seagreen;
@@ -45,16 +96,12 @@ a:hover {
   padding: 5px 10px;
   border: 1px #000 solid;
   border-radius: 15px;
-  
-}
 
-.my-nav li:hover {
-  color:rgba(128, 0, 128, 0.761);
+  background-color: rgb(52, 53, 59);
+
 
 }
-.my-nav h2 {
-  color:black;
-}
+
 
 
 

@@ -11,9 +11,9 @@ class ApiConn extends Component {
     //kolla i kursvideon hur man gör.
 
     componentDidMount() {
-       // axios.get('http://informatik12.ei.hv.se/grupp5v2/api/Activities').then(res =>{
+        axios.get('http://informatik12.ei.hv.se/grupp5v2/api/Activities').then(res =>{
         // axios.get('http://localhost:64014/api/Activities').then(res => {
-          axios.get('https://jsonplaceholder.typicode.com/users').then(res => {
+         // axios.get('https://jsonplaceholder.typicode.com/users').then(res => {
             console.log(res.status);
             console.log(res.data);
             const persons = res.data
@@ -23,6 +23,7 @@ class ApiConn extends Component {
 
         })
         console.log("Component DID mount!");
+          
     }
 
 
@@ -33,8 +34,8 @@ class ApiConn extends Component {
                   {/* <h4>Hämtat från http://localhost:64014/api/Activities</h4> */}
                   {/* {this.state.persons.map(person => <li>{person.description}</li>)} */}
                   
-                  <h4>Hämtat från random webapi</h4>
-                  {this.state.persons.map(person => <li>{person.name}</li>)}
+                  <h4>Hämtas från Hotell Seasharp: Aktiviteter på hotellet</h4>
+                  {this.state.persons.map(person => <li>{person.description}</li>)}
               </ul>              
             </div>
         )
