@@ -3,7 +3,7 @@ import axios from 'axios';
 class ApiConn extends Component {
 
     state= {
-        persons:[]
+        activities:[],
     }
 
     // För att få detta att fungera måste du aktivera proxy, något med CORS!
@@ -16,14 +16,13 @@ class ApiConn extends Component {
          // axios.get('https://jsonplaceholder.typicode.com/users').then(res => {
             console.log(res.status);
             console.log(res.data);
-            const persons = res.data
+            const activities = res.data
             this.setState({
-                persons
+                activities
             });
 
         })
-        console.log("Component DID mount!");
-          
+         
     }
 
 
@@ -34,9 +33,10 @@ class ApiConn extends Component {
                   {/* <h4>Hämtat från http://localhost:64014/api/Activities</h4> */}
                   {/* {this.state.persons.map(person => <li>{person.description}</li>)} */}
                   
-                  <h4>Hämtas från Hotell Seasharp: Aktiviteter på hotellet</h4>
-                  {this.state.persons.map(person => <li>{person.description}</li>)}
-              </ul>              
+                  <h3>Hämtas från Hotell Seasharp: Aktiviteter på hotellet</h3>
+                  {this.state.activities.map(a => <li><p>{a.description}</p></li>)}
+              </ul>    
+                
             </div>
         )
     }

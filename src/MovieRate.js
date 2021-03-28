@@ -15,7 +15,9 @@ class MovieRate extends Component {
                 rating : 0
                 
             },
-            editForm : false
+            editForm : false,
+            inputTitle : "",
+            inputRating : 0,
             
         }
     }
@@ -26,14 +28,24 @@ class MovieRate extends Component {
             const movies = res.data ;
             console.log(movies);
            this.setState({movies}) 
-        });
+        }).catch(e => {
+            console.log("ERROR : \n " + e);
+            
+        })
+        
+        ;
         
     }
     
     createMovie() {
         let title = prompt("Name of Movie?");
         let rating = prompt("Rate 1 to 10?");
-        alert("<-- Created --> \n Movie: " + title + "\n Rating: " + rating);
+        console.log("debug1: Title and rating \n" + `[${title}]    [${rating}]`);
+        let response = (title.length != null && rating != null) ? "Created!" : "Error, could not create";
+
+        alert(response + " \n Movie: " + title + "\n Rating: " + rating);
+        
+       
         axios.post(this.apiConnectionString, {
             title,
             rating
@@ -55,7 +67,9 @@ class MovieRate extends Component {
         axios.get(this.apiConnectionString + id).then(res => {
             const selectedMovie = res.data ;
             console.log("Movie gotten: \n" + selectedMovie.title);
-            this.setState({selectedMovie})
+            this.setState({selectedMovie});
+            this.setState({inputTitle : selectedMovie.title});
+            this.setState({inputRating : selectedMovie.rating})
         })
         this.scrollToTop();
     }
@@ -83,12 +97,15 @@ class MovieRate extends Component {
         console.log(event.target.title.value);
         const editedMovie = {
             id : this.state.selectedMovie.id,
-            title : event.target.title.value,
-            rating : event.target.rating.value
+            title : this.state.inputTitle,
+            rating : this.state.inputRating
         }
         axios.put(this.apiConnectionString + this.state.selectedMovie.id, editedMovie).then(res => {
             console.log("PUT Success ");
             console.log(res.status);
+            this.componentDidMount();
+            this.setState({editForm : false});
+            this.unselectMovie();
         }).catch(res => {
             console.log("PUT Error");
             console.log(res.status);
@@ -147,12 +164,14 @@ class MovieRate extends Component {
                                     {this.state.editForm &&
                                     <form onSubmit={(event) => this.editMovie(event)}>
                                         <p>Titel:</p>
-                                        <input type={"text"} id={"editTitle"} onChange={ (event) => {
-                                            this.updateEditValues(event);
+                                        <input type={"text"} id={"editTitle"} value={this.state.inputTitle} onChange={
+                                            (e) => { this.setState({inputTitle : e.target.value}) 
+                                            // (event) => {
+                                            // this.updateEditValues(event);
                                         }}/>
                                         <br />
                                         <p>Rating:</p>
-                                        <input type={"number"} value={this.state.editTitle}/>
+                                        <input type={"number"} value={this.state.inputRating} onChange={(e) => { this.setState({inputRating : e.target.value})}}/>
                                         <br /> 
                                         
                                         <input type={"submit"} value={"OK"} />
